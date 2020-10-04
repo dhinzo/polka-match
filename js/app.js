@@ -68,5 +68,5 @@ $(() => {
     console.log(`goal div was clicked`)
   })
   // add color
-  $("#start-game").on("click", goalDivGenerator, boardGenerator)
+  $("#start-game").on("click", goalDivGenerator)
 })
