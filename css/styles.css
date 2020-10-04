@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#start-game {
+  align-content: flex-start;
+}
+
+#game-dashboard {
+  display: inline-flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  height: 10vw;
+  width: 100vw;
+  margin-bottom: 5vw;
+}
+
+#game-area {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  height: 50vw;
+  width: 100vw;
+}
+
+.goal-divs {
+  border-radius: 100%;
+  height: 3vw;
+  width: 3vw;
+  border: 1px solid black;
+  margin-top: 3vw;
+}
+
+.game-divs {
+  border-radius: 100%;
+  height: 3vw;
+  width: 3vw;
+  border: 1px solid black;
+}
