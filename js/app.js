@@ -35,13 +35,19 @@ const goalDivGenerator = () => {
     $goalDivs.addClass("goal-divs")
     $gameDash.append($goalDivs)
     const red = Math.floor(Math.random() * 255)
-    console.log(red)
+    //console.log(red)
     const green = Math.floor(Math.random() * 255)
-    console.log(green)
+    //console.log(green)
     const blue = Math.floor(Math.random() * 255)
-    console.log(blue)
+    //console.log(blue)
     const color = `rgb(${red},${green},${blue})`
     $goalDivs.css("background-color", color)
+    $(".goal-divs").on("click", (event) => {
+      event.currentTarget
+      console.log(`goal div was clicked`)
+      // click $gameDivs
+    })
+    boardGenerator()
   }
 }
 
@@ -51,22 +57,16 @@ const boardGenerator = () => {
     const $gameDivs = $("<div>")
     $gameDivs.addClass("game-divs")
     $("#game-area").append($gameDivs)
+    $(".game-divs").on("click", (event) => {
+      event.currentTarget
+      console.log(`game div was clicked`)
+    })
   }
 }
 
 // EVENT LISTENERS/HANDLERS
 
 $(() => {
-  // click $gameDivs
-  $(".game-divs").on("click", (event) => {
-    event.currentTarget
-    console.log(`game div was clicked`)
-  })
   // click $goalDivs
-  $("#goal-divs").on("click", (event) => {
-    event.currentTarget
-    console.log(`goal div was clicked`)
-  })
-  // add color
   $("#start-game").on("click", goalDivGenerator)
 })
