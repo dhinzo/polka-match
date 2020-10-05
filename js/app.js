@@ -20,7 +20,17 @@ Objects will host
   -Determine acceptable range of win (1%-10%)
   -Determine wrong selection
 */
+// winningColors array has the winningColor value pushed into it
+const winningColors = []
 
+// gameDivs has the gameDiv color values pushed into it
+const gameDivs = []
+
+const $gameDash = $("#game-dashboard")
+const $gameArea = $("#game-area")
+const $startGame = $("#start-game")
+
+// COLORIZER class generates random color values
 class Colorizer {
   constructor() {
     this.red = Math.floor(Math.random() * 255)
@@ -28,42 +38,23 @@ class Colorizer {
     this.green = Math.floor(Math.random() * 255)
     //console.log(green)
     this.blue = Math.floor(Math.random() * 255)
+    //this.color = "color"
   }
   toRGBString() {
     return `rgb(${this.red},${this.green},${this.blue})`
   }
 }
 
-const winningColors = []
-const gameDivs = []
-
-const $gameDash = $("#game-dashboard")
-const $gameArea = $("#game-area")
-const $startGame = $("#start-game")
-
 // ******FUNCTIONS*******
 
-// Generate a winning color, and push to winningColor array
+// Generate a winning color, and push to winningColors array
+const winningColor = new Colorizer()
 const winningColorGenerator = () => {
-  // const red = Math.floor(Math.random() * 255)
-  // //console.log(red)
-  // const green = Math.floor(Math.random() * 255)
-  // //console.log(green)
-  // const blue = Math.floor(Math.random() * 255)
-  //console.log(blue)
-  // const color = {
-  //   red: red,
-  //   blue: blue,
-  //   green: green
-  // }
-  // const color = `rgb(${red},${green},${blue})`
-  const winningColor = new Colorizer()
   $(".goal-divs").css("background-color", winningColor.toRGBString())
   // <-- i want to push this color to winningColors array
-  //console.log(this)
   winningColors.push(winningColor)
   console.log(winningColor)
-  console.log(winningColors)
+  //console.log(winningColors)
 }
 
 const goalDivGenerator = () => {
@@ -74,39 +65,41 @@ const goalDivGenerator = () => {
   $(".goal-divs").on("click", (event) => {
     event.currentTarget
     console.log(`goal div was clicked`)
-    // console.log(winningColors)
+    console.log(winningColors)
   })
   winningColorGenerator()
   boardGenerator()
 }
 //-GENERATE GAME BOARD
-// will set the board before color is assigned
 const boardGenerator = () => {
   for (let i = 0; i < 500; i++) {
     const color = new Colorizer()
-    const $gameDiv = $("<div>")
+    const $gameDiv = $(`<div id=${i}>`)
     $gameDiv.css("background-color", color.toRGBString())
     $gameDiv.addClass("game-divs")
     $("#game-container").append($gameDiv)
-    // click $gameDivs
+    // click each $gameDiv
     $gameDiv.on("click", (event) => {
       event.currentTarget
       console.log(`game div was clicked`)
     })
     //add them to array as an object with div and color object
     gameDivs.push({ div: $gameDiv, color: color }) // will push each game div as objs, div = key, $gameDiv is the value. color is the next key, and the color variable is the value
-    console.log(gameDivs)
+    // console.log("test")
+    //console.log(gameDivs)
   }
+  addWinningColorToGame()
 }
 
 const addWinningColorToGame = () => {
   // get a random game div out of gameDivs
-  //rnd = random between 0 - gamedivs.length
-  // set color property of a random div to match the winning div
-  //gameDivs[rnd].color = winningcolors[0].color
-  // '' ''''  .css(background to winningcolors.toRGBString)
+  const rnd = Math.floor(Math.random() * gameDivs.length)
+  // console.log(rnd)
+  $(`#${rnd}`).css("background-color", winningColor.toRGBString())
   // take random div and add event listener to it to denote a match
-  //gamedivs[rnd].div.on(click, {dostuf})
+  gameDivs[rnd].div.on("click", (event) => {
+    console.log("winning div was clicked!")
+  })
 }
 
 // {div: $Jquery}
