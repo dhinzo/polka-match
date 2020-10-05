@@ -22,11 +22,16 @@
 }
 
 #game-area {
-  display: inline-flex;
-  flex-wrap: wrap;
   border: 1px solid black;
   height: 50vw;
-  width: 100vw;
+  width: 96vw;
+}
+
+#game-container {
+  display: inline-flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 96vw;
 }
 
 .goal-divs {
