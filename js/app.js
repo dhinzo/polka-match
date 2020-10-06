@@ -21,16 +21,17 @@ Objects will host
   -Determine wrong selection
 */
 // winningColors array has the winningColor value pushed into it
-const winningColors = []
+let winningColors = []
 
 // gameDivs has the gameDiv color values pushed into it
 const gameDivs = []
 
 let gameLives = 5
 
-const rnd = Math.floor(Math.random() * gameDivs.length)
+//let rnd = Math.floor(Math.random() * gameDivs.length)
 const $gameDash = $("#game-dashboard")
 const $gameArea = $("#game-area")
+const $polkaDashDisplay = $("#polka-container")
 const $startGame = $("#start-game")
 
 // COLORIZER class generates random color values
@@ -54,7 +55,8 @@ class Colorizer {
 const goalDivGenerator = () => {
   const $goalDivs = $("<div>")
   $goalDivs.addClass("goal-divs")
-  $gameDash.append($goalDivs)
+  $polkaDashDisplay.append($goalDivs)
+
   winningColorGenerator()
   boardGenerator()
   addWinningColorToGame()
@@ -97,18 +99,26 @@ const boardGenerator = () => {
 
 const addWinningColorToGame = () => {
   // get a random game div out of gameDivs
-  const rnd = Math.floor(Math.random() * gameDivs.length)
+  let rnd = Math.floor(Math.random() * gameDivs.length)
   // console.log(rnd)
-  const $winningPolka = $(`#${rnd}`).css(
+  let $winningPolka = $(`#${rnd}`).css(
     "background-color",
     winningColor.toRGBString()
   )
-  $winningPolka.removeClass("game-divs").addClass("winning-polka")
+  //$winningPolka.removeClass("game-divs").addClass("winning-polka")
   $winningPolka.on("click", (event) => {
-    console.log("winning polka was clicked!")
+    alert("winning polka was clicked! click next round to move on")
     gameLives++
     $("#display").text(gameLives)
   })
+}
+
+const resetGame = () => {
+  $("#game-container").empty()
+  $("#polka-container").empty()
+  //goalDivGenerator()
+  winningColors = []
+  //addWinningColorToGame()
 }
 
 // GAME LOGIC
@@ -122,5 +132,9 @@ const addWinningColorToGame = () => {
 
 $(() => {
   $("#start-game").on("click", goalDivGenerator)
+  $("#restart").on("click", function() {
+    resetGame()
+  })
+
   $("#display").text(gameLives)
 })
