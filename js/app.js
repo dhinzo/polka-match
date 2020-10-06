@@ -26,6 +26,9 @@ const winningColors = []
 // gameDivs has the gameDiv color values pushed into it
 const gameDivs = []
 
+let gameLives = 5
+
+const rnd = Math.floor(Math.random() * gameDivs.length)
 const $gameDash = $("#game-dashboard")
 const $gameArea = $("#game-area")
 const $startGame = $("#start-game")
@@ -47,65 +50,77 @@ class Colorizer {
 
 // ******FUNCTIONS*******
 
-// Generate a winning color, and push to winningColors array
-const winningColor = new Colorizer()
-const winningColorGenerator = () => {
-  $(".goal-divs").css("background-color", winningColor.toRGBString())
-  // <-- i want to push this color to winningColors array
-  winningColors.push(winningColor)
-  console.log(winningColor)
-  //console.log(winningColors)
-}
-
+// Generate the div that hosts the winning color
 const goalDivGenerator = () => {
   const $goalDivs = $("<div>")
   $goalDivs.addClass("goal-divs")
   $gameDash.append($goalDivs)
-  // click $goalDivs
-  $(".goal-divs").on("click", (event) => {
-    event.currentTarget
-    console.log(`goal div was clicked`)
-    console.log(winningColors)
-  })
   winningColorGenerator()
   boardGenerator()
+  addWinningColorToGame()
 }
-//-GENERATE GAME BOARD
+
+// Generate a winning color, and push to winningColors array
+const winningColor = new Colorizer()
+const winningColorGenerator = () => {
+  $(".goal-divs").css("background-color", winningColor.toRGBString())
+  winningColors.push(winningColor)
+  //console.log(winningColor)
+  //console.log(winningColors)
+}
+//-Generate game board
 const boardGenerator = () => {
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 20; i++) {
     const color = new Colorizer()
     const $gameDiv = $(`<div id=${i}>`)
     $gameDiv.css("background-color", color.toRGBString())
     $gameDiv.addClass("game-divs")
     $("#game-container").append($gameDiv)
-    // click each $gameDiv
-    $gameDiv.on("click", (event) => {
-      event.currentTarget
-      console.log(`game div was clicked`)
-    })
     //add them to array as an object with div and color object
     gameDivs.push({ div: $gameDiv, color: color }) // will push each game div as objs, div = key, $gameDiv is the value. color is the next key, and the color variable is the value
-    // console.log("test")
-    //console.log(gameDivs)
+    $gameDiv.on("click", (event) => {
+      if ($gameDiv !== winningColors) {
+        if (gameLives >= 1) {
+          gameLives--
+        }
+        //alert("you lost the game")
+        if (gameLives === 0) {
+          alert("game over, press restart to try again")
+        }
+        $("#display").text(gameLives)
+      }
+    })
   }
-  addWinningColorToGame()
+  // console.log("test")
+  //console.log(gameDivs)
 }
 
 const addWinningColorToGame = () => {
   // get a random game div out of gameDivs
   const rnd = Math.floor(Math.random() * gameDivs.length)
   // console.log(rnd)
-  $(`#${rnd}`).css("background-color", winningColor.toRGBString())
-  // take random div and add event listener to it to denote a match
-  gameDivs[rnd].div.on("click", (event) => {
-    console.log("winning div was clicked!")
+  const $winningPolka = $(`#${rnd}`).css(
+    "background-color",
+    winningColor.toRGBString()
+  )
+  $winningPolka.removeClass("game-divs").addClass("winning-polka")
+  $winningPolka.on("click", (event) => {
+    console.log("winning polka was clicked!")
+    gameLives++
+    $("#display").text(gameLives)
   })
 }
+
+// GAME LOGIC
+// player can continue playing game if they have more than 0 lives
+// player can restart the game at any point
+// if gameLives === 0, game over,
+// if gameLives > 0 and the player finds the color (win/move on)
 
 // {div: $Jquery}
 // EVENT LISTENERS/HANDLERS
 
 $(() => {
-  // click $goalDivs
   $("#start-game").on("click", goalDivGenerator)
+  $("#display").text(gameLives)
 })

@@ -8,17 +8,33 @@
   justify-content: center;
 }
 
-#start-game {
+#start-game,
+#restart {
+  font-size: 1.25vw;
   align-content: flex-start;
+  height: 2.25vw;
+  margin-top: 1vw;
 }
 
 #game-dashboard {
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
   border: 1px solid black;
   height: 10vw;
   width: 100vw;
   margin-bottom: 5vw;
+}
+
+#display {
+  font-size: 5vw;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  height: 6vw;
+  width: 9vw;
+  padding-top: 21w;
 }
 
 #game-area {
@@ -39,12 +55,19 @@
   height: 3vw;
   width: 3vw;
   border: 1px solid black;
-  margin-top: 3vw;
+  /* margin-top: 3vw; */
 }
 
 .game-divs {
   border-radius: 100%;
   height: 3vw;
   width: 3vw;
-  border: 1px solid black;
+  border: 1px solid grey;
+}
+
+.winning-polka {
+  border-radius: 100%;
+  height: 3vw;
+  width: 3vw;
+  border: 1px solid grey;
 }
