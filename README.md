@@ -5,7 +5,7 @@ polka-match is a web-based game for one or more players. to win the game, the pl
 **************
 
 **
-_why polka dots?_**
+##_why polka dots?_
 **
 
 i found this game relaxing. the simplicity of the user interface allows the player to appreciate the colors on the screen. i believe it would also be fun for those learning their colors, graphic designers, and humans of all ages.
@@ -14,7 +14,7 @@ this game is being created for General Assembly's Software Engineering Intensive
 **************
 
 **
-_user stories_**
+###_user stories_
 **
 
 1. player(s) can read how to play game.
@@ -28,7 +28,7 @@ _user stories_**
 **************
 
 **
-_deliverables_**
+_deliverables_
 **
 
 this game utilizes html, css, with javascript, and jQuery for DOM manipulation
@@ -36,7 +36,7 @@ this game utilizes html, css, with javascript, and jQuery for DOM manipulation
 *******************
 
 **
-_forthcoming features_**
+_forthcoming features_
 **
 
 1. more challenging levels beyond level 10 using HSLa (HSL with transparency levels) 
@@ -47,7 +47,7 @@ _forthcoming features_**
 ********************
 
 **
-known issues
+_known issues_
 **
 
 1. the game works best on browser. while mobile and tablet-sized view ports work, too, the interface gets a little squished
