@@ -6,7 +6,7 @@ h1 {
   font-family: "Josefin Slab";
   text-align: center;
   font-weight: 700;
-  margin-bottom: 3vw;
+  margin-bottom: 2vw;
 }
 
 p {
@@ -14,7 +14,7 @@ p {
   font-style: italic;
   font-weight: 400;
   font-size: 1.15rem;
-  padding-bottom: 5px;
+  /* padding-bottom: px; */
   margin-top: 0;
 }
 
@@ -60,6 +60,18 @@ h3 {
 #modal-footer {
   text-align: right;
 }
+#game-dashboard {
+  position: static;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px dotted black;
+
+  min-height: 5rem;
+  min-width: 25rem;
+  margin-top: 1vw;
+  margin-bottom: 5vw;
+}
 
 #start-game,
 #restart,
@@ -71,10 +83,10 @@ h3 {
   background-color: white;
   color: black;
   border: 2px solid #e7e7e7;
-  font-size: 1.35vw;
+  font-size: 20px;
   align-content: flex-start;
-  height: 2.25vw;
-  width: 9vw;
+  min-height: 2.25vw;
+  min-width: 9vw;
   margin: 0 auto;
 }
 
@@ -101,19 +113,6 @@ h3 {
   background-color: #e7e7e7;
 }
 
-#game-dashboard {
-  position: static;
-  display: inline-flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 2px dotted black;
-  min-height: 92px;
-  height: 10vw;
-  width: 100vw;
-  margin-top: 2vw;
-  margin-bottom: 5vw;
-}
-
 #turn-display,
 #lvl-counter,
 #timer {
@@ -124,8 +123,8 @@ h3 {
   align-items: center;
   justify-content: center;
   /* border: 1px solid black; */
-  height: 6vw;
-  width: 9vw;
+  min-height: 6vw;
+  min-width: 6vw;
   padding-top: 2px;
 }
 #polka-display {

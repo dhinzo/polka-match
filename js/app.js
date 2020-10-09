@@ -12,12 +12,6 @@ Numbers, Data
 - Booleans -- does the user-selected value match the WINNING value? is it within a percentage?
   is the user past a certain level in the game? 
 
-  FUNCTIONS 
-  -Generate winning color
-  -Generate game pieces
-  -Generate game board
-  -Determine the result of the wrong selection 
-  -Determine the result of the correct selection 
 */
 
 // ---------> GAME SETUP <----------
