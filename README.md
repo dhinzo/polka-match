@@ -1,36 +1,61 @@
 # polka-match
 
-polka-match is a web-based game for one or two players. to win the game, the player must find and select all of the polka dots in the game area that match the rbg value of the GOAL color.
+polka-match is a web-based game for one or more players. to win the game, the player must find and the polka dot of the same color value
 
+**************
+
+
+## _why polka dots?_
+
+
+i found this game relaxing. the simplicity of the user interface allows the player to appreciate the colors on the screen. i believe it would also be fun for those learning their colors, graphic designers, and humans of all ages.
 this game is being created for General Assembly's Software Engineering Intensive, project 1.
 
+**************
+
+
+### _user stories_
+
+
+1. player(s) can read how to play game.
+2. player will press 'play game' to generate the game
+3. player will select game polkas by clicking on them, attempting and match the goal color.
+4. if the player is correct, it will alert the player and move on to the next round.
+5. if the player is is wrong, they will be penalized and docked one point from the 'wrong guesses left' counter
+6. player wins if they successfully complete 10 levels without using all of their guesses
+7. player loses if they reach 0 guesses left
 
 **************
-USER STORIES
-************
-1. player can select game difficult, easy and challenge. easy mode produces larger, easier-to-see polka dots while challenge mode produces smaller ones.
-2. player will press START GAME to generate the colored 'goal' polka dot in the game dashboard
-3. after a few seconds to study the color, the player sees the game area fill with similarly-colored 'game' polka dots
-4. player will select game polkas by clicking on them to attempt and match the goal color.
-5. if the player is correct, it will show in the game dashboard, counting from zero to the specified number of colored polka dots to find for that round.
-6. if the player is is wrong, they will be penalized and docked one point from the 'wrong attempts left' counter
-7. player wins the level if they correctly identify all goal colored polkas in the game area in the specified amount of time, moving to the next level.
-8. the player loses if they do not find the goal colored polkas in time OR they make too many wrong attempts. the game restarts from level 1.
 
 
-**************
-DELIVERABLES
-************
-this game will utilize html, css, with javascript, and jQuery for DOM manipulation
+_deliverables_
+
+
+this game utilizes html, css, with javascript, and jQuery for DOM manipulation
 
 *******************
-GAME REQUIREMENTS
-*****************
---this game will randomly select color values.
---once a goal color is identified, the program will generate an array of similar color values within a % range, appropriate for the game level.
---EASY mode will produce larger polka dots, and a higher % of acceptable color values throughout the progression of the game
---CHALLENGE mode will produce smaller polka dots, have a lower % of accepted color values, and as the game progresses, the colors will randomly move around the game board to distract the player.
 
 
+_forthcoming features_
+
+
+1. more challenging levels beyond level 10 using HSLa (HSL with transparency levels) 
+2. animated game board that moves around during game play
+3. a dedicated mode for 2 or more players
+4. anything you'd like to see in the game! :)
+
+********************
+
+
+_known issues_
+
+
+1. the game works best on browser. while mobile and tablet-sized view ports work, too, the interface gets a little squished
+
+**************
+
+![alt text][logo]
+
+[logo]:https://i.imgur.com/JQAhdLa.png "early wireframe"
 
 
