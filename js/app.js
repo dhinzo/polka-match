@@ -105,10 +105,11 @@ const boardGenerator = () => {
   let max = 25 + levelDiff
   if (gameLevel > 5) {
     max = 40
-  }
-  if (gameLevel > 10) {
+  } else if (gameLevel > 10) {
     alert("you won the game! click new game to play again!")
+    clearInterval(interval)
     gameOver()
+    return
   }
   // empty gameDivs array to ensure the winningColor is included in the board
   gameDivs = []

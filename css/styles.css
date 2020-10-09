@@ -48,7 +48,7 @@ h3 {
 
 #modal-textbox {
   background-color: white;
-  height: 350px;
+  min-height: 350px;
   width: 550px;
   border-radius: 2px;
   margin: 150px auto;
