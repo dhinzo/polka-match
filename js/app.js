@@ -1,18 +1,14 @@
-//console.log("hello")
-$
 /*
----* COLOR FINDER *---
+---* Polka Match *---
 a game that prompts a user to find and select a div with a specific rgb value, within in a range of acceptable values
 
 
-CHECK OUT FOR MODALS: https://micromodal.now.sh/
+CHECK OUT FOR MODALS: https://micromodal.now.sh/ [ not this time :( ]
 
 // DATA
-Objects/Arrays
-Arrays will host winning colors
-Objects will host 
+Numbers, Data
 
-- Numbers -- RGB values, RGBa values for more difficult levels of the game
+- Numbers -- HSL values, hs
 - Booleans -- does the user-selected value match the WINNING value? is it within a percentage?
   is the user past a certain level in the game? 
 
@@ -31,12 +27,12 @@ let winningColor
 // winningColors array has the winningColor value pushed into it
 let winningColors = []
 // gameDivs has the gameDiv color values pushed into it
-const gameDivs = []
+let gameDivs = []
 
 // gameLives to determine how many incorrect tries the player has
-let gameLives = 5
+let gameLives = 8
 
-// count the level number after each succesful round win
+// set starting level, count the level number after each succesful round win
 let gameLevel = 1
 
 // setting jQuery for main elements of the game
@@ -44,19 +40,38 @@ const $gameDash = $("#game-dashboard")
 const $gameArea = $("#game-area")
 const $polkaDashDisplay = $("#polka-container")
 const $startGame = $("#start-game")
+const $openBtn = $("#openModal")
+const $modal = $("#modal")
+const $closeBtn = $("#close")
 
 // COLORIZER class generates random color values
 class Colorizer {
   constructor() {
-    this.red = Math.floor(Math.random() * 255)
+    this.hue = Math.floor(Math.random() * 360)
     //console.log(red)
-    this.green = Math.floor(Math.random() * 255)
+    this.saturation = Math.floor(Math.random() * 25) + 75
+
     //console.log(green)
-    this.blue = Math.floor(Math.random() * 255)
+    this.light = Math.floor(Math.random() * 50) + 25
     //this.color = "color"
   }
-  toRGBString() {
-    return `rgb(${this.red}, ${this.green}, ${this.blue})`
+  toHSLString() {
+    return `hsl(${this.hue}, ${this.saturation}%, ${this.light}%)`
+  }
+}
+
+// SimilarColorizer generates HSL values within close range of the winningColor HSL
+class SimilarColorizer {
+  constructor() {
+    this.hue = Math.floor(Math.random() * 180) + (winningColor.hue - 90)
+    this.saturation =
+      Math.floor(Math.random() * 40) + (winningColor.saturation - 20)
+
+    this.light = Math.floor(Math.random() * 40) + (winningColor.light - 20)
+  }
+
+  toHSLString() {
+    return `hsl(${this.hue}, ${this.saturation}%, ${this.light}%)`
   }
 }
 
@@ -70,54 +85,67 @@ const goalDivGenerator = () => {
   const $goalDivs = $("<div>")
   $goalDivs.addClass("goal-divs")
   $polkaDashDisplay.append($goalDivs)
+
   winningColorGenerator()
   boardGenerator()
   addWinningColorToGame()
   setTimer()
+  $("#restart").css("opacity", 1)
 }
 
 // Generate a winning color, and push to winningColors array
 const winningColorGenerator = () => {
   winningColor = new Colorizer()
-  $(".goal-divs").css("background-color", winningColor.toRGBString())
+  $(".goal-divs").css("background-color", winningColor.toHSLString())
   winningColors.push(winningColor)
   console.log(winningColor)
   //console.log(winningColor)
   //console.log(winningColors)
 }
 
-//-Generate game board
+// Generate game board
 const boardGenerator = () => {
+  // levelDiff adds 20 gameDivs to the board until the min is reached
   let levelDiff = Math.min(100, gameLevel * 20)
+  // sets the starting number of gameDivs and adds levelDiff for next level
+  let max = 25 + levelDiff
+  if (gameLevel > 5) {
+    max = 40
+  }
+  if (gameLevel > 10) {
+    alert("you won the game! click new game to play again!")
+    gameOver()
+  }
+  // empty gameDivs array to ensure the winningColor is included in the board
+  gameDivs = []
 
-  for (let i = 0; i < 22 + levelDiff; i++) {
-    const color = new Colorizer()
+  for (let i = 0; i < max; i++) {
+    const color = gameLevel > 5 ? new SimilarColorizer() : new Colorizer()
     const $gameDiv = $(`<div id=${i}>`)
-    $gameDiv.css("background-color", color.toRGBString())
+    $gameDiv.css("background-color", color.toHSLString())
     $gameDiv.addClass("game-divs")
     $("#game-container").append($gameDiv)
     //add them to array as an object with div and color object
     gameDivs.push({ div: $gameDiv, color: color }) // will push each game div as objs, div = key, $gameDiv is the value. color is the next key, and the color variable is the value
     //console.log(gameDivs)
     $gameDiv.on("click", (event) => {
-      //check event current target.css.(backgroudncolor) winningcolors[0].toRBGstring
-      console.log(
-        "target color",
-        $(event.currentTarget).css("background-color")
-      )
-      console.log("winning Color", winningColors[0].toRGBString())
       if (
+        // checking to see if clicked game piece matches the winning-polka class div
         $(event.currentTarget).css("background-color") !==
-        winningColors[0].toRGBString()
+        $(".winning-polka").css("background-color")
       ) {
+        // adds a challenge, shuffleBoard(), after level 5 is passed
+        if (gameLevel > 5) {
+          shuffleBoard()
+        }
         if (gameLives >= 1) {
           gameLives--
+          $("#turn-display").text(gameLives)
         }
         //alert("you lost the game")
         if (gameLives === 0) {
-          alert("game over, press restart to try again")
+          gameOver()
         }
-        $("#turn-display").text(gameLives)
       }
     })
   }
@@ -125,50 +153,55 @@ const boardGenerator = () => {
   //console.log(gameDivs)
 }
 
+// game over fucntion
+const gameOver = () => {
+  alert("game over, press new game to try again")
+  $("#turn-display").text(gameLives)
+  $("#new-game").css("opacity", 1)
+  clearInterval(interval)
+  $("#restart").css("opacity", 0)
+  $("#start-game").css("opacity", 0)
+}
+
+// adds the winningColor value to the game board
 const addWinningColorToGame = () => {
   let rnd = Math.floor(Math.random() * gameDivs.length)
   // get a random game div out of gameDivs
+  // console.log("this is the length of the array", gameDivs.length)
   // console.log(rnd)
   let $winningPolka = $(`#${rnd}`).css(
     "background-color",
-    winningColor.toRGBString()
+    winningColor.toHSLString()
   )
   $winningPolka.addClass("winning-polka")
   $winningPolka.on("click", (event) => {
+    gameLives++
     alert("winning polka was clicked! click ok to move on")
     gameLevel++
-    gameLives++
     $("#turn-display").text(gameLives)
     resetGame()
     goalDivGenerator()
   })
 }
 
-// TO-DO
-//To make colors closer to winning color
-// function
-
-//Generate a color modifer between (closer to 0 is harder closer to 100 is easier), increase or decrase each R G B value by modifier
-//Keep in mind cant go below 0 or above 255 Math.min or Math.max
-
-const colorModifier = () => {
-  let modifiedColor = winningColor
-  modifiedColor.blue = Math.floor(Math.random() * Math.min(winningColor.blue))
-  console.log(modifiedColor.blue)
+// the challenge after level 5 is passed
+const shuffleBoard = () => {
+  $(".game-divs").each(function(gameDiv) {
+    $(this).css("order", Math.floor(Math.random() * 100))
+  })
 }
 
-interval = null
-let clock = 25
+// ------> Timer Functions<-------
+let interval = null
+let clock = 60
 
 const resetGame = () => {
   $("#game-container").empty()
   $("#polka-container").empty()
-  //goalDivGenerator()
   winningColors = []
-  //addWinningColorToGame()
   $("#lvl-counter").text(gameLevel)
   clearInterval(interval)
-  clock = 25
+  clock = 60
 }
 
 function updateInterval() {
@@ -181,7 +214,14 @@ function updateInterval() {
     //Do things when time runs out
     alert("you ran out of time! click ok to try this level again")
     $("#turn-display").text(gameLives)
-    gameLives--
+    if (gameLives >= 1) {
+      gameLives--
+      $("#turn-display").text(gameLives)
+    }
+    //alert("you lost the game")
+    if (gameLives === 0) {
+      gameOver()
+    }
     resetGame()
     // clearInterval(interval)
     // clock = 25
@@ -193,16 +233,37 @@ const setTimer = () => {
   interval = setInterval(updateInterval, 1000)
 }
 
-// {div: $Jquery}
 // EVENT LISTENERS/HANDLERS
 
 $(() => {
+  //Modals
+  const openModal = () => {
+    $modal.css("display", "block")
+  }
+  const closeModal = () => {
+    $modal.css("display", "none")
+  }
+  $openBtn.on("click", openModal)
+  $closeBtn.on("click", closeModal)
+
+  // Start Game
   $("#start-game").on("click", goalDivGenerator)
+  // Restart Game
   $("#restart").on("click", function() {
     resetGame()
     goalDivGenerator()
   })
-
+  // New Game
+  $("#new-game").on("click", () => {
+    resetGame()
+    gameLevel = 1
+    $("#lvl-counter").text(gameLevel)
+    gameLives = 8
+    $("#turn-display").text(gameLives)
+    goalDivGenerator()
+    $("#new-game").css("opacity", 0)
+    $("#start-game").css("opacity", 1)
+  })
   $("#turn-display").text(gameLives)
   $("#lvl-counter").text(gameLevel)
 })

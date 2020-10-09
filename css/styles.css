@@ -2,28 +2,115 @@
   box-sizing: border-box;
 }
 
+h1 {
+  font-family: "Josefin Slab";
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 3vw;
+}
+
+p {
+  font-family: "Josefin Slab";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+h3 {
+  text-align: left;
+  font-family: "Josefin Slab";
+  padding-top: 1vw;
+  padding-bottom: 6rem;
+  padding-left: 2rem;
+}
+
 .container {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
+#modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  /*This puts our modal in front of the body (which has a default z-index setting of `0`*/
+  overflow: auto;
+  /*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
+  display: none;
+}
+
+#modal-textbox {
+  background-color: white;
+  height: 350px;
+  width: 550px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  line-height: 120%;
+}
+
+#modal-footer {
+  text-align: right;
+}
+
 #start-game,
-#restart {
-  font-size: 1.25vw;
+#restart,
+#new-game,
+#openModal,
+.modal-buttons {
+  font-family: "Josefin Slab";
+  font-weight: 700;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  font-size: 1.35vw;
   align-content: flex-start;
   height: 2.25vw;
-  margin-top: 1vw;
+  width: 9vw;
+  margin: 0 auto;
+}
+
+#openModal {
+  background-color: white;
+  color: black;
+  border: 1px solid #e7e7e7;
+}
+
+#new-game {
+  opacity: 0;
+}
+
+#restart {
+  opacity: 0;
+  font-style: italic;
+}
+
+#start-game:hover,
+#restart:hover,
+#new-game:hover,
+#openModal:hover,
+.modal-buttons:hover {
+  background-color: #e7e7e7;
 }
 
 #game-dashboard {
+  position: static;
   display: inline-flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
+  border: 2px dotted black;
   min-height: 92px;
   height: 10vw;
   width: 100vw;
+  margin-top: 2vw;
   margin-bottom: 5vw;
 }
 
@@ -31,18 +118,20 @@
 #lvl-counter,
 #timer {
   font-size: 5vw;
+  font-family: "Love Ya Like A Sister";
+  font-style: 400;
   text-align: center;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 6vw;
   width: 9vw;
-  padding-top: 0.25vw;
+  padding-top: 2px;
 }
 #polka-display {
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 5rem;
   width: 6rem;
   padding-top: 0.85rem;
@@ -54,23 +143,23 @@
 }
 
 #game-area {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 50vw;
-  width: 96vw;
+  width: 50vw;
 }
 
 #game-container {
   display: inline-flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  width: 96vw;
+  max-width: 50vw;
 }
 
 .goal-divs {
   border-radius: 100%;
   height: 3rem;
   width: 3rem;
-  border: 1px solid black;
+  border: 1px solid grey;
   /* margin-top: 3vw; */
 }
 
@@ -85,5 +174,5 @@
   border-radius: 100%;
   height: 3rem;
   width: 3rem;
-  border: 5px solid black;
+  border: 1px solid grey;
 }

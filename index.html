@@ -11,20 +11,50 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,400;0,600;0,700;1,300;1,400;1,600&family=Love+Ya+Like+A+Sister&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="container">
       <div id="game-dashboard">
+        <h3>wrong guesses left:</h3>
         <div id="turn-display"></div>
-        <button id="restart">reset</button>
+        <button id="new-game">new game</button>
+        <button id="restart">reset board</button>
         <button id="start-game">play game</button>
+        <button id="openModal">how to play</button>
+        <div id="modal">
+          <div id="modal-textbox">
+            <h1>polka match!</h1>
+            <p>
+              press 'play game' to start. find the matching-colored polka dot
+              (top right) in the main game area -- you won't miss it!
+            </p>
+            <p>
+              if you guess incorrectly, you lose one turn. each level passed
+              adds a turn.
+            </p>
+            <p>
+              if you run out of time, press reset board to try the level again.
+            </p>
+            <p>did you make it past level 5? get ready for a challenge!</p>
+            <div id="modal-footer">
+              <button class="modal-buttons" id="close" href="#">close</button>
+            </div>
+          </div>
+        </div>
         <div id="timer"></div>
-        <div id="lvl-counter"></div>
+        <h3>match this color!</h3>
         <div id="polka-display"><div id="polka-container"></div></div>
+        <h3>level:</h3>
+        <div id="lvl-counter"></div>
       </div>
       <div id="game-area"><div id="game-container"></div></div>
     </div>
+
     <script src="js/app.js" async defer></script>
   </body>
 </html>
