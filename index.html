@@ -20,12 +20,16 @@
   <body>
     <div class="container">
       <div id="game-dashboard">
-        <h3>guesses left:</h3>
-        <div id="turn-display"></div>
-        <button id="new-game">new game</button>
-        <button id="restart">reset board</button>
-        <button id="start-game">play game</button>
-        <button id="openModal">how to play</button>
+        <div id="turn-container">
+          <h3>guesses left:</h3>
+          <div id="turn-display"></div>
+        </div>
+        <div id="btn-container">
+          <button id="openModal">how to play</button>
+          <button id="start-game">play game</button>
+          <button id="restart">reset board</button>
+          <button id="new-game">new game</button>
+        </div>
         <div id="modal">
           <div id="modal-textbox">
             <h1>polka match!</h1>
@@ -48,10 +52,14 @@
           </div>
         </div>
         <div id="timer"></div>
-        <h3>match this color!</h3>
-        <div id="polka-display"><div id="polka-container"></div></div>
-        <h3>level:</h3>
-        <div id="lvl-counter"></div>
+        <div id="match-container">
+          <h3>match this color!</h3>
+          <div id="polka-display"><div id="polka-container"></div></div>
+        </div>
+        <div id="lvl-container">
+          <h3>level:</h3>
+          <div id="lvl-counter"></div>
+        </div>
       </div>
       <div id="game-area"><div id="game-container"></div></div>
     </div>

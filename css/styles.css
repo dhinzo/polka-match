@@ -19,17 +19,14 @@ p {
 }
 
 h3 {
-  text-align: left;
+  text-align: center;
   font-family: "Josefin Slab";
-  padding-top: 1vw;
-  padding-bottom: 6rem;
-  padding-left: 2rem;
 }
 
 .container {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #modal {
@@ -48,7 +45,7 @@ h3 {
 
 #modal-textbox {
   background-color: white;
-  min-height: 350px;
+  height: 350px;
   width: 550px;
   border-radius: 2px;
   margin: 150px auto;
@@ -60,17 +57,41 @@ h3 {
 #modal-footer {
   text-align: right;
 }
+
 #game-dashboard {
   position: static;
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   border: 2px dotted black;
-
+  width: 90vw;
   min-height: 5rem;
   min-width: 25rem;
+
   margin-top: 1vw;
   margin-bottom: 5vw;
+}
+
+#btn-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+#turn-container,
+#match-container,
+#lvl-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.75rem;
+}
+
+#lvl-container {
+  margin-right: 0.75rem;
+}
+
+#turn-container {
+  margin-left: 0.75rem;
 }
 
 #start-game,
@@ -84,12 +105,32 @@ h3 {
   color: black;
   border: 2px solid #e7e7e7;
   font-size: 20px;
+  padding: 4px 6px;
   align-content: flex-start;
-  min-height: 2.25vw;
-  min-width: 9vw;
+  /* height: 2.25vw;
+  width: 9vw; */
   margin: 0 auto;
 }
 
+@media screen and (max-width: 800px) {
+  #start-game,
+  #restart,
+  #new-game,
+  #openModal,
+  .modal-buttons {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #start-game,
+  #restart,
+  #new-game,
+  #openModal,
+  .modal-buttons {
+    font-size: 14px;
+  }
+}
 #openModal {
   background-color: white;
   color: black;
@@ -97,12 +138,11 @@ h3 {
 }
 
 #new-game {
-  opacity: 0;
+  opacity: 1;
 }
 
 #restart {
   opacity: 0;
-  font-style: italic;
 }
 
 #start-game:hover,
@@ -143,7 +183,7 @@ h3 {
 
 #game-area {
   /* border: 1px solid black; */
-  height: 50vw;
+
   width: 50vw;
 }
 
@@ -152,6 +192,16 @@ h3 {
   align-items: flex-start;
   flex-wrap: wrap;
   max-width: 50vw;
+}
+
+@media screen and (max-width: 1300px) {
+  #game-area {
+    width: 81vw;
+  }
+
+  #game-container {
+    max-width: 81vw;
+  }
 }
 
 .goal-divs {
@@ -175,3 +225,68 @@ h3 {
   width: 3rem;
   border: 1px solid grey;
 }
+
+@media screen and (max-width: 665px) {
+  .goal-divs,
+  .game-divs,
+  .winning-polka {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+/* 
+@media screen and (max-width: 365px) {
+  h1 {
+    font-size: 10px;
+  }
+
+  h3 {
+    padding-left: 0.75rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 10px;
+  }
+
+  p {
+    font-size: 6px;
+  }
+
+  #game-dashboard {
+    width: 10vw;
+    height: 120px;
+  }
+
+  .winning-polka,
+  .game-divs,
+  .goal-divs {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .goal-divs {
+    margin-top: 25px;
+    margin-right: 25px;
+  }
+
+  #modal-textbox {
+    height: 200px;
+    width: 300px;
+    line-height: 85%;
+  }
+
+  #close {
+    margin-top: 15px;
+  }
+
+  #start-game,
+  #restart,
+  #new-game,
+  #openModal,
+  .modal-buttons {
+    font-size: 6px;
+    height: 1rem;
+    width: 5rem;
+    line-height: 5px;
+  }
+} */
