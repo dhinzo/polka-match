@@ -50,7 +50,7 @@ h3 {
   border-radius: 2px;
   margin: 150px auto;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  padding: 2%;
+  padding: 1%;
   line-height: 120%;
 }
 
@@ -60,6 +60,10 @@ h3 {
     width: 350px;
     font-size: 8.5px;
     line-height: 180%;
+  }
+
+  h1 {
+    padding-bottom: 5px;
   }
 }
 
