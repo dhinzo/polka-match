@@ -83,7 +83,7 @@ const goalDivGenerator = () => {
   winningColorGenerator()
   boardGenerator()
   addWinningColorToGame()
-  setTimer()
+  //setTimer()
   $("#restart").css("opacity", 1)
 }
 
@@ -107,8 +107,9 @@ const boardGenerator = () => {
     max = 40
   } else if (gameLevel > 10) {
     alert("you won the game! click new game to play again!")
-    clearInterval(interval)
-    gameOver()
+    endGame()
+
+    // gameOver()
     return
   }
   // empty gameDivs array to ensure the winningColor is included in the board
@@ -158,6 +159,16 @@ const gameOver = () => {
   $("#start-game").css("opacity", 0)
 }
 
+const endGame = () => {
+  $("#turn-display").text(gameLives)
+  $("#new-game").css("opacity", 1)
+  clearInterval(interval)
+  clock = 60
+  $("#restart").css("opacity", 0)
+  $("#start-game").css("opacity", 0)
+}
+
+
 // adds the winningColor value to the game board
 const addWinningColorToGame = () => {
   let rnd = Math.floor(Math.random() * gameDivs.length)
@@ -176,6 +187,8 @@ const addWinningColorToGame = () => {
     $("#turn-display").text(gameLives)
     resetGame()
     goalDivGenerator()
+    clearInterval(interval)
+    setTimer()
   })
 }
 
@@ -195,8 +208,8 @@ const resetGame = () => {
   $("#polka-container").empty()
   winningColors = []
   $("#lvl-counter").text(gameLevel)
-  clearInterval(interval)
-  clock = 60
+  //clearInterval(interval)
+  //clock = 60
 }
 
 function updateInterval() {
@@ -225,6 +238,7 @@ function updateInterval() {
 }
 
 const setTimer = () => {
+  clock = 60
   interval = setInterval(updateInterval, 1000)
 }
 
@@ -243,9 +257,11 @@ $(() => {
 
   // Start Game
   $("#start-game").on("click", goalDivGenerator)
+  $("#start-game").on('click', setTimer)
   // Restart Game
   $("#restart").on("click", function() {
     resetGame()
+    setTimer()
     goalDivGenerator()
   })
   // New Game
@@ -256,6 +272,7 @@ $(() => {
     gameLives = 8
     $("#turn-display").text(gameLives)
     goalDivGenerator()
+    setTimer()
     $("#new-game").css("opacity", 0)
     $("#start-game").css("opacity", 1)
   })
