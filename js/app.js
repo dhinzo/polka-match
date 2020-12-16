@@ -85,6 +85,7 @@ const goalDivGenerator = () => {
   addWinningColorToGame()
   //setTimer()
   $("#restart").css("opacity", 1)
+  $("#end-game").css("opacity", 1)
 }
 
 // Generate a winning color, and push to winningColors array
@@ -162,8 +163,8 @@ const gameOver = () => {
 const endGame = () => {
   $("#turn-display").text(gameLives)
   $("#new-game").css("opacity", 1)
+  clock = 0
   clearInterval(interval)
-  clock = 60
   $("#restart").css("opacity", 0)
   $("#start-game").css("opacity", 0)
 }
@@ -208,13 +209,13 @@ const resetGame = () => {
   $("#polka-container").empty()
   winningColors = []
   $("#lvl-counter").text(gameLevel)
-  //clearInterval(interval)
+  clearInterval(interval)
   //clock = 60
 }
 
+
 function updateInterval() {
   clock--
-  console.log(clock)
   $("#timer").text(clock)
   if (clock <= 0) {
     // reference (goalDivGenerator)
@@ -278,4 +279,9 @@ $(() => {
   })
   $("#turn-display").text(gameLives)
   $("#lvl-counter").text(gameLevel)
+
+  // End Game
+  $("#end-game").on("click", () => {
+    endGame()
+  })
 })
