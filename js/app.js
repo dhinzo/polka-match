@@ -86,6 +86,9 @@ const goalDivGenerator = () => {
   //setTimer()
   $("#restart").css("opacity", 1)
   $("#end-game").css("opacity", 1)
+  $(".match-this-color").css("opacity", 1)
+  $("#turn-display").css("opacity", 1)
+  $("#lvl-counter").css("opacity", 1)
 }
 
 // Generate a winning color, and push to winningColors array

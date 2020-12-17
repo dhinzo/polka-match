@@ -223,7 +223,10 @@ h3 {
 
 #new-game,
 #restart,
-#end-game {
+#end-game,
+#turn-display,
+#lvl-counter,
+.match-this-color {
   opacity: 0;
 }
 
@@ -293,6 +296,7 @@ h3 {
   height: 3rem;
   width: 3rem;
   border: 1px solid grey;
+  margin: 0 auto;
   /* margin-top: 3vw; */
 }
 
