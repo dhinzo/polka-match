@@ -1,6 +1,6 @@
 # polka-match
 
-polka-match is a web-based game for one or more players. to win the game, the player must find and the polka dot of the same color value
+polka-match is a web-based game for one or more players. to win the game, the player must find and the polka dot of the same color value. play the game [here](https://dhinzo.github.io/polka-match/)
 
 **************
 
