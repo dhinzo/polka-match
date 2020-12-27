@@ -49,7 +49,10 @@ h3 {
   font-weight: 400;
 }
 
-
+.match-this-color {
+  /* border: 1px solid black; */
+  max-width: 4rem;
+}
 
 #modal-textbox {
   background-color: white;
@@ -81,6 +84,12 @@ h3 {
     margin-top: 0;
   }
 
+  #turn-display,
+  #lvl-counter,
+  #timer {
+    font-size: 3rem !important;
+  }
+
 }
 
 
@@ -110,7 +119,12 @@ h3 {
 
   #modal-container {
     height: 250px;
+  }
 
+  #turn-display,
+  #lvl-counter,
+  #timer {
+    font-size: 2rem !important;
   }
 
   #start-game,
@@ -124,8 +138,8 @@ h3 {
     background-color: white;
     color: black;
     border: 2px solid #e7e7e7;
-    font-size: .85rem !important;
-    padding: 4px 6px;
+    font-size: .8rem !important;
+    padding: 2px 2px !important;
     align-content: flex-start;
     /* height: 2.25vw;
   width: 9vw; */
@@ -156,7 +170,7 @@ h3 {
   }
 
 
-  h3 {
+  .game-headers {
     font-size: 1rem;
   }
 
@@ -197,6 +211,12 @@ h3 {
 
   #modal-container {
     height: 70%;
+  }
+
+  #turn-display,
+  #lvl-counter,
+  #timer {
+    font-size: 2rem !important;
   }
 }
 
@@ -242,6 +262,7 @@ h3 {
   padding-left: 10px;
 }
 
+#timer-container,
 #turn-container,
 #match-container,
 #lvl-container {
@@ -254,7 +275,8 @@ h3 {
   margin-right: 0.75rem;
 }
 
-#turn-container {
+#turn-container,
+#timer-container {
   margin-left: 0.75rem;
 }
 
@@ -305,11 +327,12 @@ h3 {
 #turn-display,
 #lvl-counter,
 #timer {
-  font-size: 5vw;
+  /* font-size: 1rem; */
   font-family: "Love Ya Like A Sister";
   font-style: 400;
   text-align: center;
-  align-items: center;
+  /* align-items: center; */
+  font-size: 4rem;
   justify-content: center;
   /* border: 1px solid black; */
   min-height: 6vw;
@@ -318,13 +341,10 @@ h3 {
 }
 
 #polka-display {
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto;
   /* border: 1px solid black; */
-  height: 5rem;
-  width: 6rem;
-  padding-top: 0.85rem;
-  padding-left: 1.5rem;
+  /* height: 6rem;
+  width: 6rem; */
 }
 
 #polka-container {

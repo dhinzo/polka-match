@@ -135,7 +135,7 @@ const boardGenerator = () => {
         $(".winning-polka").css("background-color")
       ) {
         // adds a challenge, shuffleBoard(), after level 5 is passed
-        if (gameLevel > 5) {
+        if (gameLevel > 3) {
           shuffleBoard()
         }
         if (gameLives >= 1) {
