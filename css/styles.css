@@ -40,7 +40,7 @@ h3 {
   /*This puts our modal in front of the body (which has a default z-index setting of `0`*/
   overflow: auto;
   /*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
-  /* display: none; */
+  display: none;
 }
 
 
