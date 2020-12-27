@@ -40,7 +40,7 @@ h3 {
   /*This puts our modal in front of the body (which has a default z-index setting of `0`*/
   overflow: auto;
   /*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
-  display: none;
+  /* display: none; */
 }
 
 
@@ -101,6 +101,7 @@ h3 {
   #modal-textbox {
     width: 420px;
     height: 400px;
+    line-height: 175%;
   }
 
   p {
@@ -136,21 +137,22 @@ h3 {
 
 @media screen and (max-width: 430px) {
   #modal-textbox {
-    height: 40%;
+    height: 25rem;
     width: 80%;
   }
 
   #modal-container {
     height: 15rem;
+
   }
 
   #modal-footer {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
   }
 
-  p {
-    font-size: .85rem;
+  .modal-body {
+    font-size: .80rem;
   }
 
 
@@ -160,7 +162,43 @@ h3 {
 
 }
 
+@media screen and (max-width: 377px) {
+  #modal-textbox {
+    height: 25rem;
+  }
 
+  #modal-container {
+    height: 15rem;
+  }
+
+}
+
+@media screen and (max-width: 360px) {
+  #modal-textbox {
+    height: 65%;
+    line-height: 170%;
+  }
+
+  #modal-container {
+    height: 15rem;
+  }
+
+  .modal-body {
+    font-size: .70rem;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+
+  #modal-textbox {
+    height: 78%;
+  }
+
+  #modal-container {
+    height: 70%;
+  }
+}
 
 
 #modal-container {
